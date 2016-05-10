@@ -1,17 +1,14 @@
 package com.example.marioclassen.myapplication;
 
 import android.content.Intent;
-import android.net.http.HttpResponseCache;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
 
 import com.example.marioclassen.myapplication.data.dto.PersonDTO;
+import com.example.marioclassen.myapplication.db.DBHandler;
+import com.example.marioclassen.myapplication.helper.NetworkUtils;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     MainPresenter mainPresenter;
 
+    DBHandler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +35,21 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         gridView = (GridView) findViewById(R.id.gridView1);
 
+
+
+
+
+        handler = new DBHandler(this);
+        NetworkUtils utils = new NetworkUtils(MainActivity.this);
+        if(handler.getPersonCount() == 0 && utils.isConnectingToInternet())
+        {
+            mainPresenter.searchPeople(this);
+        }
+        else
+        {
+            this.personDTOs = handler.getAllPersons();
+        }
+
         personListAdapter = new PersonListAdapter(this, R.layout.activity_person_list_item, personDTOs);
         gridView.setAdapter(personListAdapter);
 
@@ -46,18 +60,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     protected void onStart() {
         super.onStart();
-        mainPresenter.searchPeople(this);
-    }
-
-    public void searchPeople(View view) {
-
-
-        mainPresenter.searchPeople(this);
-
     }
 
     @Override
     public void updatePersonList(List<PersonDTO> personDTOs) {
+        for (PersonDTO personDTO : personDTOs) {
+            handler.addPerson(personDTO);
+        }
         personListAdapter.updateList(personDTOs);
     }
 

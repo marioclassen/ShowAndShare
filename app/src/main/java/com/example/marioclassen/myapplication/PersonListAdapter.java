@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.marioclassen.myapplication.data.dto.PersonDTO;
-import com.example.marioclassen.myapplication.data.loader.LoadImageFromUrlAsync;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;

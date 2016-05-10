@@ -1,8 +1,5 @@
 package com.example.marioclassen.myapplication;
 
-import android.widget.ImageView;
-
-import com.example.marioclassen.myapplication.data.loader.LoadImageFromUrlAsync;
 import com.example.marioclassen.myapplication.data.loader.LoadPersonDTOAsync;
 
 /**
@@ -14,8 +11,4 @@ public class PersonDetailPresenterImpl implements PersonDetailPresenter {
         new LoadPersonDTOAsync(personDetailView).execute(position);
     }
 
-    @Override
-    public void loadImageFromUrl(ImageView imageView, String url) {
-        new LoadImageFromUrlAsync(imageView).execute(url);
-    }
 }

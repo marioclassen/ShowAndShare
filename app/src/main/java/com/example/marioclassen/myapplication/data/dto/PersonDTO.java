@@ -1,7 +1,6 @@
 package com.example.marioclassen.myapplication.data.dto;
 
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by mclassen on 04/05/2016.
@@ -18,11 +17,11 @@ public class PersonDTO {
     private String hair_color;
     List<String> professions;
 
-    public List<Scanner> getFriends() {
+    public List<String> getFriends() {
         return friends;
     }
 
-    public void setFriends(List<Scanner> friends) {
+    public void setFriends(List<String> friends) {
         this.friends = friends;
     }
 
@@ -90,6 +89,6 @@ public class PersonDTO {
         this.id = id;
     }
 
-    List<Scanner> friends;
+    List<String> friends;
 
 }
