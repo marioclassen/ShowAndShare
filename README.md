@@ -1,4 +1,7 @@
 # ShowAndShare
 My demo app
 
-This is my demo app
+# TODO
+- Exception Handling
+- Code Refactoring
+- Chache JSON Result in DB
